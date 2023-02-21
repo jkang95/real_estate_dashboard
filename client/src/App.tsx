@@ -23,7 +23,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
-import { Login, Home, Agents, MyProfile, PropertyDetails, AllProperties, CreateProperty, EditProperty } from "pages";
+import { Login, Home, Agents, MyProfile, PropertyDetails, AllProperties, CreateProperty, EditProperty, AgentProfile } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 
@@ -106,28 +106,32 @@ function App() {
           resources={[
             {
               name: "property",
-              list: MuiInferencer,
+              list: AllProperties,
+              show: PropertyDetails,
+              create: CreateProperty,
+              edit: EditProperty,
               icon: <VillaOutlined />
             },
             {
               name: "agent",
-              list: MuiInferencer,
+              list: Agents,
+              show: AgentProfile,
               icon: <PeopleAltOutlined />
             },
             {
               name: "review",
-              list: MuiInferencer,
+              list: Home,
               icon: <StarOutlineRounded />
             },
             {
               name: "message",
-              list: MuiInferencer,
+              list: Home,
               icon: <ChatBubbleOutline />
             },
             {
               name: "my-profile",
               options: { label: 'My Profile' },
-              list: MuiInferencer,
+              list: MyProfile,
               icon: <AccountCircleOutlined />
             },
           ]}
